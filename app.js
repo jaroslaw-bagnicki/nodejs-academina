@@ -1,4 +1,5 @@
 const http = require('http');
+const fs = require('fs');
 
 const server = http.createServer((req, res) => {
 
@@ -13,7 +14,7 @@ const server = http.createServer((req, res) => {
         res.write('</head>');
         res.write('<body>');
         res.write(`
-            <form action="/send-message" method="POST">
+            <form action="/message" method="POST">
                 <input name="message" type="text"/>
                 <button type="submit">Submit</button>
             </form>
@@ -22,15 +23,16 @@ const server = http.createServer((req, res) => {
         res.write('</html');
         return res.end();
     }
-    res.setHeader('Content-Type', 'text/html');
-    res.write('<html>');
-    res.write('<head>'); 
-    res.write('<title>Hello World Page</title>');
-    res.write('</head>');
-    res.write('<body>');
-    res.write('<h1>Hello World!</h1>');
-    res.write('</body>');
-    res.write('</html');
+    if ( url === '/message' && method === 'POST') {
+        fs.writeFileSync('message.txt', 'DUMMY_TEXT');
+        res.statusCode = 302;
+        res.setHeader('Location', '/');
+        return res.end();
+    }
+    res.setHeader('Content-Type', 'text/plain');
+    res.statusCode = 404;
+    res.statusMessag = 'Page not found';
+    res.write('Not Found');
     res.end();
 });
 
