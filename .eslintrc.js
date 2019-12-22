@@ -13,5 +13,7 @@ module.exports = {
         "ecmaVersion": 2018
     },
     "rules": {
+        "no-unused-vars": "warn",
+        "semi": "error",
     }
 };
