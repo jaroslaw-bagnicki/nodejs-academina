@@ -1,5 +1,10 @@
 const fs = require('fs');
 
+/**
+ * Route middleware
+ * @param {import('http').IncomingMessage} req Request object
+ * @param {import('http').ServerResponse} res Response object
+ */
 const requestHandler = (req, res) => {
 
     const { url, method, headers } = req;
@@ -38,7 +43,6 @@ const requestHandler = (req, res) => {
     }
     res.setHeader('Content-Type', 'text/plain');
     res.statusCode = 404;
-    res.statusMessag = 'Page not found';
     res.write('Not Found');
     res.end();
 };
