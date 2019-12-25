@@ -66,9 +66,18 @@ const rootController = (req, res) => {
         case ROUTES.createUser: {
             logRequestEvent(req);
             if (method === 'POST') {
-                return res.writeHead(302, {
-                    'Location': '/users',
-                }).end();
+                const chunks = [];
+                req.on('data', chunk => chunks.push(chunk));
+                req.on('end', () => {
+                    const body = Buffer.concat(chunks);
+                    console.log({
+                        body: body.toString(),
+                    });
+                    return res.writeHead(302, {
+                        'Location': '/users',
+                    }).end();
+                });
+                break;
             } else {
                 return res.writeHead(400, 'Invalid http method. Use POST').end();
             }
