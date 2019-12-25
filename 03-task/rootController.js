@@ -1,13 +1,14 @@
 const ROUTES = {
     home: '/',
     users: '/users',
+    createUser: '/create-user',
 };
 
 /**
  * 
  * @param {import('http').IncomingMessage} req Request object
  */
-const logRequestDetails = (req) => {
+const logRequestEvent = (req) => {
     const { url, method} = req;
     const date = new Date().toISOString();
     console.log(`[${date}] ${method} on ${url}`);
@@ -20,10 +21,11 @@ const logRequestDetails = (req) => {
  */
 const rootController = (req, res) => {
 
-    const { url } = req;
-    switch(url) {
+    const { url, method } = req;
+    const [ route, query ] = url.split('?');
+    switch(route) {
         case ROUTES.home: {
-                logRequestDetails(req);
+                logRequestEvent(req);
                 return res.writeHead(200, {
                     'Content-Type': 'text/html',
                 }).end(`
@@ -33,12 +35,17 @@ const rootController = (req, res) => {
                         </head>
                         <body>
                             <h1>Greetings from homepage!</h1>
+                            <form method="POST" action="/create-user">
+                                <label for="username">User name: </label>
+                                <input type="text" name="username" required />
+                                <button type"submit">Create new user</button>
+                            </form>
                         </body>
                     </html>
                 `);
             }
         case ROUTES.users: {
-            logRequestDetails(req);
+            logRequestEvent(req);
             const users = ['user1', 'user2', 'user3'];
             return res.writeHead(200, {
                 'Content-Type': 'text/html',
@@ -56,8 +63,18 @@ const rootController = (req, res) => {
                 </html>
             `);
         }
+        case ROUTES.createUser: {
+            logRequestEvent(req);
+            if (method === 'POST') {
+                return res.writeHead(302, {
+                    'Location': '/users',
+                }).end();
+            } else {
+                return res.writeHead(400, 'Invalid http method. Use POST').end();
+            }
+        }
         default: {
-            logRequestDetails(req);
+            logRequestEvent(req);
             res.statusCode = 404;
             return res.end();
         }
