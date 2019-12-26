@@ -1,20 +1,17 @@
 const express = require('express');
-const logger = require('./middlewares/logger');
+const logger = require('./middleware/logger');
+const usersHandler = require('./middleware/usersHandler');
 
 const PORT = 3000;
 const ROUTES = {
     HOME: '/',
-    ADD_PRODUCT: '/add-product',
+    USERS: '/users',
 };
 
 const app = express();
 
 app.use(logger);
-
-app.use(ROUTES.ADD_PRODUCT, (req, res) => {
-   res.send('<h1>Add product page.</h1>');
-});
-
+app.use(ROUTES.USERS, usersHandler);
 app.use(ROUTES.HOME, (req, res) => {
     res.send('<h1>Hello from Express!</h1>');
 });
