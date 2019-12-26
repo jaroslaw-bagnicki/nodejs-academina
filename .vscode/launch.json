@@ -12,6 +12,17 @@
             "skipFiles": [
                 "<node_internals>/**"
             ]
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Launch Task#3 App with Nodemon",
+            "program": "${workspaceFolder}/03-task/app.js",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "restart": true,
+            "runtimeExecutable": "nodemon"
         }
     ]
 }
