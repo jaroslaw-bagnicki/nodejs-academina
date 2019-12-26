@@ -1,10 +1,17 @@
-const http = require('http');
 const express = require('express');
 
 const PORT = 3000;
 
 const app = express();
 
-const server = http.createServer(app);
+app.use((req, res, next) => {
+    console.log('Log from middleware');
+    next();
+});
 
-server.listen(PORT, null, null, () => console.log(`Server started on port ${PORT}.`));
+app.use((req, res) => {
+    console.log('Log from 2nd middleware');
+    res.send('<h1>Hello from Express!</h1>');
+});
+
+app.listen(PORT, () => console.log(`Server started on port ${PORT}.`));
