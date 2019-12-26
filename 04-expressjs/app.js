@@ -13,10 +13,11 @@ const ROUTES = {
 const app = express();
 
 app.use(logger);
+app.use(express.urlencoded({ extended: false }));
 app.use(ROUTES.USERS, usersHandler);
 app.use(ROUTES.ADD_PRODUCT, addProductHandler);
 app.use(ROUTES.HOME, (req, res) => {
     res.send('<h1>Hello from Express!</h1>');
 });
 
-app.listen(PORT, () => console.log(`Server started on port ${PORT}.`));
+app.listen(PORT, () => console.log(`Server started on port ${PORT}...`));

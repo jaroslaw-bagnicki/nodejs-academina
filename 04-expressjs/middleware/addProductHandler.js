@@ -15,8 +15,8 @@ const addProductHandler = (req, res, next) => {
                 <body>
                     <h2>Add new product</h2>
                     <form method="POST">
-                        <label for="product-name">Product name:</label>
-                        <input type="text" name="product-name" />
+                        <label for="name">Product name:</label>
+                        <input type="text" name="name" />
                         <button type="submit">Add new product</button>
                     </form>
                 </body>
@@ -25,7 +25,8 @@ const addProductHandler = (req, res, next) => {
     }
 
     if (method === 'POST') {
-        console.log('New product crated');
+        console.log('Add product request');
+        console.log(req.body);
         return res.sendStatus(201);
     }
 
