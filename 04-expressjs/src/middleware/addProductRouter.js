@@ -1,13 +1,8 @@
-/**
- * 
- * @param {import('express').Request} req 
- * @param {import('express').Response} res 
- */
-const addProductHandler = (req, res, next) => {
-    const { method } = req;
-    
-    if (method === 'GET') {
-        return res.send(`
+const { ADD_PRODUCT } = require('../const/routes');
+const addProductRouter = require('express').Router();
+
+addProductRouter.route(ADD_PRODUCT)
+    .get((req, res) => res.send(`
             <html>
                 <head>
                     <title>Node.js Course</title>
@@ -21,16 +16,10 @@ const addProductHandler = (req, res, next) => {
                     </form>
                 </body>
             </html>
-        `);
-    }
-
-    if (method === 'POST') {
-        console.log('Add product request');
-        console.log(req.body);
+        `))
+    .post((req, res) => {
+        console.log({ body: req.body });
         return res.sendStatus(201);
-    }
+    });
 
-    next();
-};
-
-module.exports = addProductHandler;
+module.exports = addProductRouter;
