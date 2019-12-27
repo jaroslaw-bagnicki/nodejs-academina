@@ -1,8 +1,9 @@
-const { ADD_PRODUCT } = require('../const/routes');
 const addProductRouter = require('express').Router();
+const { ADD_PRODUCT } = require('../const/routes');
 
 addProductRouter.route(ADD_PRODUCT)
-    .get((req, res) => res.send(`
+    .get(function getAddProductPage(req, res) {
+        res.send(`
             <html>
                 <head>
                     <title>Node.js Course</title>
@@ -16,10 +17,11 @@ addProductRouter.route(ADD_PRODUCT)
                     </form>
                 </body>
             </html>
-        `))
-    .post((req, res) => {
+        `);
+    })
+    .post(function addProductHandler(req, res) {
         console.log({ body: req.body });
-        return res.sendStatus(201);
+        res.sendStatus(201);
     });
 
 module.exports = addProductRouter;
