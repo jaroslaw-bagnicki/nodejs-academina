@@ -4,8 +4,8 @@
  * @param {import('express').Response} res 
  */
 const notFoundMiddleware = (req, res) => {
-    res.writeHead(404)
-        .send('<h1>Page not found :(');
+    res.status(404)
+        .send('<h1>Page not found :(</h1>');
 };
 
 module.exports = notFoundMiddleware;
