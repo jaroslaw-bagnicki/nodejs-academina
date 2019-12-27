@@ -1,7 +1,10 @@
 const express = require('express');
+
 const logger = require('./middleware/logger');
+const notFound = require('./middleware/notFound');
 const usersRouter = require('./routes/usersHandler');
 const addProductRouter = require('./routes/addProductRouter');
+
 const ROUTES = require('./const/routes');
 
 const PORT = 3000;
@@ -15,5 +18,7 @@ app.get(ROUTES.HOME, (req, res) => {
 });
 app.use(usersRouter);
 app.use(addProductRouter);
+
+app.use(notFound);
 
 app.listen(PORT, () => console.log(`Server started on port ${PORT}...`));
