@@ -9,8 +9,14 @@ const addProductRouter = require('./routes/addProductRouter');
 const PORT = 3000;
 const app = express();
 
+// Logger middleware
 app.use(logger);
+
+// Body parser middleware
 app.use(express.urlencoded({ extended: true }));
+
+// Static files middleware
+app.use(express.static('public'));
 
 app.use(shopRouter);
 app.use(usersRouter);
