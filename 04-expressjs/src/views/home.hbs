@@ -18,17 +18,19 @@
     </header>
     <main>
         <h1>My products</h1>
-        <ul>
-            {{#each products}}
-                <li>
-                    <form method="POST" action="/api/product/delete/{{id}}">
-                        {{ name }} <button type="submit">Delete</button>
-                    </form>
-                </li>
-                {{else}}
-                <p>No products ...</p>
-            {{/each}}
-        </ul>
+        {{#if noProducts}}
+            <p>No products ...</p>
+            {{else}}
+            <ul>
+                {{#each products}}
+                    <li>
+                        <form method="POST" action="/api/product/delete/{{id}}">
+                            {{ name }} <button type="submit">Delete</button>
+                        </form>
+                    </li>
+                {{/each}}
+            </ul>
+        {{/if}}
     </main>
 </body>
 </html>
