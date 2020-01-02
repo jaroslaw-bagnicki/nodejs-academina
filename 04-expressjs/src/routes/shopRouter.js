@@ -8,7 +8,7 @@ shopRouter.route(HOME)
     .get(function getHomePage(req, res) {
         // res.sendFile(path.resolve('src/views/home.html'));
         console.log({ products });
-        res.render('home');
+        res.render('home', { products, title: 'Shop' });
     });
 
 module.exports = shopRouter;

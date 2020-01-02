@@ -4,7 +4,7 @@ html(lang="en")
         meta(charset="UTF-8")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         meta(http-equiv="X-UA-Compatible", content="ie=edge")
-        title Document
+        title #{title}
         link(rel="stylesheet", href="styles.css")
     body
         header.main-header
@@ -16,4 +16,7 @@ html(lang="en")
                         a(href="/add-product") Add product
         main
             h1 My products
+                ul
+                    each product in products
+                        li #{product.name}
 
