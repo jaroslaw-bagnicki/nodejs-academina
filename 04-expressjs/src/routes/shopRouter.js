@@ -2,7 +2,7 @@
 const shopRouter = require('express').Router();
 const { HOME } = require('../const/routes');
 
-const { products } = require('../routes/addProductRouter');
+const { products } = require('./productController');
 
 shopRouter.route(HOME)
     .get(function getHomePage(req, res) {
