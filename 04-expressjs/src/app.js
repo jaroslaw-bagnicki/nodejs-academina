@@ -4,7 +4,7 @@ const logger = require('./middleware/logger');
 const notFound = require('./middleware/notFound');
 const shopRouter = require('./routes/shopRouter');
 const usersRouter = require('./routes/usersRouter');
-const addProductRouter = require('./routes/addProductRouter');
+const { addProductRouter } = require('./routes/addProductRouter');
 
 const PORT = 3000;
 const app = express();
