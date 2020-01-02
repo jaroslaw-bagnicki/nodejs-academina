@@ -4,10 +4,13 @@ const logger = require('./middleware/logger');
 const notFound = require('./middleware/notFound');
 const shopRouter = require('./routes/shopRouter');
 const usersRouter = require('./routes/usersRouter');
-const addProductRouter = require('./routes/addProductRouter');
+const adminRouter = require('./routes/adminRouter');
+const { productController } = require('./routes/productController');
 
 const PORT = 3000;
 const app = express();
+app.set('view engine', 'pug');
+app.set('views', 'src/views');
 
 // Logger middleware
 app.use(logger);
@@ -20,7 +23,8 @@ app.use(express.static('public'));
 
 app.use(shopRouter);
 app.use(usersRouter);
-app.use(addProductRouter);
+app.use(adminRouter);
+app.use(productController);
 
 app.use(notFound);
 
