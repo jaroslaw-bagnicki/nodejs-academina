@@ -1,7 +1,11 @@
 const express = require('express');
 
 let id = 0;
-let products = [];
+let products = [
+    // { id: 0, name: 'Book' },
+    // { id: 1, name: 'Car' },
+    // { id: 2, name: 'Mouse' },
+];
 
 const productController = express.Router();
 
