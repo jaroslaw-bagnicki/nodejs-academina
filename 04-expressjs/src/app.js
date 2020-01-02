@@ -11,7 +11,11 @@ const { productController } = require('./routes/productController');
 const PORT = 3000;
 const app = express();
 
-app.engine('hbs', handlebars());
+app.engine('hbs', handlebars({
+    layoutsDir: 'src/views/layouts',
+    defaultLayout: 'main',
+    extname: 'hbs',
+}));
 
 app.set('view engine', 'hbs');
 app.set('views', 'src/views');
