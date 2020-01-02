@@ -8,6 +8,8 @@ const addProductRouter = require('./routes/addProductRouter');
 
 const PORT = 3000;
 const app = express();
+app.set('view engine', 'pug');
+app.set('views', 'src/views');
 
 // Logger middleware
 app.use(logger);

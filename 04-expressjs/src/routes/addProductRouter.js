@@ -8,7 +8,7 @@ addProductRouter.route(ADD_PRODUCT)
     })
     .post(function addProductHandler(req, res) {
         console.log({ body: req.body });
-        res.sendStatus(201);
+        res.redirect('/');
     });
 
 module.exports = addProductRouter;
