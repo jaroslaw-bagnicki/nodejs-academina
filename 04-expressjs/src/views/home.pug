@@ -1,28 +1,14 @@
-<!DOCTYPE html>
-html(lang="en")
-    head
-        meta(charset="UTF-8")
-        meta(name="viewport", content="width=device-width, initial-scale=1.0")
-        meta(http-equiv="X-UA-Compatible", content="ie=edge")
-        title #{title}
-        link(rel="stylesheet", href="/styles.css")
-    body
-        header.main-header
-            nav.main-header__nav
-                ul.main-header__item-list
-                    li.main-header__item.active
-                        a(href="/") Home
-                    li.main-header__item
-                        a(href="/admin/add-product") Add product
-        main
-            h1 My products
-            ul
-                if products.length > 0
-                    each product in products
-                        li 
-                            form(method="POST" action="/api/product/delete/" + product.id)
-                                span #{product.name}
-                                button(type="submit") Delete
-                else
-                    p No products ...
+extends layout.pug
+
+block content
+    h1 My products
+    ul
+        if products.length > 0
+            each product in products
+                li 
+                    form(method="POST" action="/api/product/delete/" + product.id)
+                        span #{product.name}
+                        button(type="submit") Delete
+        else
+            p No products ...
 

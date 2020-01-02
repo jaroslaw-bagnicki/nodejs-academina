@@ -4,7 +4,7 @@
  * @param {import('express').Response} res 
  */
 const notFoundMiddleware = (req, res) => {
-    res.status(404).render('not-found');
+    res.status(404).render('not-found', { title: 'Page not found'});
 };
 
 module.exports = notFoundMiddleware;
