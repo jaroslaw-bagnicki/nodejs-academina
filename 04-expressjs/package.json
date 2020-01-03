@@ -1,7 +1,7 @@
 {
   "name": "section4-expressjs",
   "version": "1.0.0",
-  "main": "app.js",
+  "main": "src/app.js",
   "author": "Jarosław Bagnicki <jarek@bagnicki.net>",
   "license": "MIT",
   "scripts": {
