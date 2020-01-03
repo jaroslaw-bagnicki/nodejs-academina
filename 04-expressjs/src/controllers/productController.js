@@ -1,36 +1,36 @@
-let id = 0;
-let products = [
-    // { id: 0, name: 'Book' },
-    // { id: 1, name: 'Car' },
-    // { id: 2, name: 'Mouse' },
-];
+/** @typedef {import('express').RequestHandler} RequestHandler */
 
-/** @type {import('express').RequestHandler} */
+const productStore = require('../models/productStore');
+
+/** @type {RequestHandler} */
 exports.getProducts = (req, res) => {
+    const products = productStore.getAll();
     res.render('admin/products', { title: 'Admin - products', activeProducts: true , products, noProducts: products.length === 0, });
 };
 
-/** @type {import('express').RequestHandler} */
+/** @type {RequestHandler} */
 exports.getAddProduct = (req, res) => {
     res.render('admin/add-product', { title: 'Admin - add products', activeAddProduct: true });
 };
 
-/** @type {import('express').RequestHandler} */
+/** @type {RequestHandler} */
 exports.postAddProduct = (req, res) => {
-    products.push({ id: id++, name: req.body.name });
-    res.redirect('back');
+    const result = productStore.add(req.body.name);
+    if (result) {
+        res.redirect('back');
+    } else {
+        res.sendStatus(500);
+    }
 };
 
-/** @type {import('express').RequestHandler} */
+/** @type {RequestHandler} */
 exports.postDeleteProduct = (req, res) => {
-    const deleteId = req.params.id;
-    const index = products.findIndex(product => product.id === +deleteId);
-    if (~index) {
-        products.splice(index, 1);
+    const result = productStore.remove(+req.params.id);
+    if (result) {
         res.redirect('back');
 
     } else {
-        res.sendStatus(404);
+        res.sendStatus(500);
     }
 };
 
