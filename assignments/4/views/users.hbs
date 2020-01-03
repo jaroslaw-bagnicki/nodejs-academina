@@ -1,0 +1,10 @@
+<h1>Users:</h1>
+{{#if noUser}}
+<p>No existing users ...</p>
+{{else}}
+<ul>
+    {{#each users}}
+        <li>{{name}}</li>
+    {{/each}}
+</ul>
+{{/if}}
