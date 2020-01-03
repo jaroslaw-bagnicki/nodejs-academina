@@ -1,5 +1,5 @@
 const express = require('express');
-const handlebars = require('express-handlebars');
+// const handlebars = require('express-handlebars');
 
 const logger = require('./middleware/logger');
 const notFound = require('./middleware/notFound');
@@ -11,13 +11,7 @@ const { productController } = require('./routes/productController');
 const PORT = 3000;
 const app = express();
 
-app.engine('hbs', handlebars({
-    layoutsDir: 'src/views/layouts',
-    defaultLayout: 'main',
-    extname: 'hbs',
-}));
-
-app.set('view engine', 'hbs');
+app.set('view engine', 'ejs');
 app.set('views', 'src/views');
 
 // Logger middleware
